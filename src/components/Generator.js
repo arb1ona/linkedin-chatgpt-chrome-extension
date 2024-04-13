@@ -1,7 +1,8 @@
 import React from "react";
 import { ImProfile } from "react-icons/im";
+import { ROUTES } from "../utils/routes";
 
-function Generator() {
+function Generator({ setPage }) {
 	return (
 		<div className="flex flex-col">
 			<div className="flex flex-row justify-between mx-5 my-3 items-center">
@@ -13,7 +14,12 @@ function Generator() {
 					{" "}
 					LinkedIn Cover Letter Generator{" "}
 				</h2>{" "}
-				<button className="border-2 border-solid p-2 border-gray-500 rounded-md text-gray-500 text-lg ">
+				<button
+					onClick={() => {
+						setPage(ROUTES.PROFILE);
+					}}
+					className="border-2 border-solid p-2 border-gray-500 rounded-md text-gray-500 text-lg "
+				>
 					<ImProfile />
 				</button>{" "}
 			</div>{" "}

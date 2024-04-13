@@ -1,12 +1,18 @@
 import React from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { ROUTES } from "../utils/routes";
 
-const Profile = () => {
+const Profile = ({ setPage }) => {
 	return (
 		<div className="flex flex-col mx-5 my-5">
 			<div className="flex justify-between">
 				<h2 className="text-2xl font-bold text-slate-700"> Profile </h2>{" "}
-				<button className="border-2 border-solid p-2 border-gray-500 rounded-[100%] text-gray-500 text-lg ">
+				<button
+					onClick={() => {
+						setPage(ROUTES.GENERATOR);
+					}}
+					className="border-2 border-solid p-2 border-gray-500 rounded-[100%] text-gray-500 text-lg "
+				>
 					<IoMdArrowRoundBack />
 				</button>{" "}
 			</div>{" "}
