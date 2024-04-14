@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ImProfile } from "react-icons/im";
 import { ROUTES } from "../utils/routes";
+import { loadData } from "../utils/localStorage";
 
 function Generator({ setPage }) {
+	const [jobDescription, setJobDescription] = useState("");
+
+	useEffect(() => {
+		const fetchJobDescription = async () => {
+			const fetchedJob = await loadData("jobDescription");
+			setJobDescription(fetchedJob);
+		};
+
+		fetchJobDescription();
+	}, []);
+
 	return (
 		<div className="flex flex-col">
 			<div className="flex flex-row justify-between mx-5 my-3 items-center">
@@ -28,6 +40,7 @@ function Generator({ setPage }) {
 					rows={12}
 					className="w-full border-2 border-solid rounded-md p-2"
 					placeholder="Generated cover letter"
+					value={jobDescription}
 				/>{" "}
 			</div>{" "}
 		</div>
