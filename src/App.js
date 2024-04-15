@@ -5,40 +5,43 @@ import { ROUTES } from "./utils/routes";
 import { loadData } from "./utils/localStorage";
 
 function App() {
-    const [page, setPage] = useState();
-    const [resume, setResume] = useState("resume test");
-    const [openAIKey, setOpenAIKey] = useState("test key");
+	const [page, setPage] = useState();
+	const [resume, setResume] = useState();
+	const [openAIKey, setOpenAIKey] = useState();
 
-    useEffect(() => {
-        const fetchLocalData = async() => {
-            const fetchedResume = await loadData("resume");
-            const fetchedOpenAIKey = await loadData("openAIKey");
+	useEffect(() => {
+		const fetchLocalData = async () => {
+			const fetchedResume = await loadData("resume");
+			const fetchedOpenAIKey = await loadData("openAIKey");
 
-            setResume(fetchedResume);
-            setOpenAIKey(fetchedOpenAIKey);
-        };
+			setResume(fetchedResume);
+			setOpenAIKey(fetchedOpenAIKey);
+		};
 
-        fetchLocalData();
-    }, []);
+		fetchLocalData();
+	}, []);
 
-    switch (page) {
-        case ROUTES.GENERATOR:
-            return <Generator setPage = { setPage }
-            />;
-        case ROUTES.PROFILE:
-            return ( <
-                Profile setPage = { setPage }
-                resume = { resume }
-                setResume = { setResume }
-                openAIKey = { openAIKey }
-                setOpenAIKey = { setOpenAIKey }
-                />
-            );
+	switch (page) {
+		case ROUTES.GENERATOR:
+			return (
+				<Generator setPage={setPage} resume={resume} openAIKey={openAIKey} />
+			);
+		case ROUTES.PROFILE:
+			return (
+				<Profile
+					setPage={setPage}
+					resume={resume}
+					setResume={setResume}
+					openAIKey={openAIKey}
+					setOpenAIKey={setOpenAIKey}
+				/>
+			);
 
-        default:
-            return <Generator setPage = { setPage }
-            />;
-    }
+		default:
+			return (
+				<Generator setPage={setPage} resume={resume} openAIKey={openAIKey} />
+			);
+	}
 }
 
 export default App;
